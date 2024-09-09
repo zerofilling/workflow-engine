@@ -1,0 +1,19 @@
+version: '3.5'
+services:
+  workflow-postgres:
+    image: postgres:16.4
+    container_name: workflow-postgres
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - workflow-db-data:/var/lib/postgresql/data
+volumes:
+  workflow-db-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: data/db
