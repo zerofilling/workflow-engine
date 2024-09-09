@@ -3,7 +3,6 @@ package com.cloudchipr.workflowengine.dto;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.util.List;
 import java.util.Map;
 
 @EqualsAndHashCode(callSuper = true)
@@ -12,11 +11,9 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class WorkflowStepDto extends AbstractDto {
-
-    private String name;
+public class ProcessStepCandidateDto extends AbstractDto {
 
     private Map<String, String> params;
 
-    private List<WorkflowStepCandidateDto> candidates;
+    private WorkflowStepDto candidates;
 }

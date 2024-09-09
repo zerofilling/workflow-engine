@@ -12,7 +12,7 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class WorkflowStepDto extends AbstractDto {
+public class ProcessStepDto extends AbstractDto {
 
     private String name;
 

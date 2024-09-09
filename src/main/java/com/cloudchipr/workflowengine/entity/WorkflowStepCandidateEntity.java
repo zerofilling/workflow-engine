@@ -2,12 +2,14 @@ package com.cloudchipr.workflowengine.entity;
 
 import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 
-import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -19,15 +21,12 @@ import java.util.Map;
 @NoArgsConstructor
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class WorkflowStepEntity extends AbstractEntity {
-
-    private String name;
-    private String executor;
+public class WorkflowStepCandidateEntity extends AbstractEntity {
 
     @Type(JsonType.class)
     @Column(columnDefinition = "jsonb")
     private Map<String, String> params;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<WorkflowStepCandidateEntity> candidates;
+    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
+    private WorkflowStepEntity step;
 }
