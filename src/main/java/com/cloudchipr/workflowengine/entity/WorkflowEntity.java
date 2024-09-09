@@ -19,7 +19,7 @@ public class WorkflowEntity extends AbstractEntity {
     @Column(unique = true)
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.LAZY)
     private WorkflowStepEntity start;
 
 }
