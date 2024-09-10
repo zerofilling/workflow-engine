@@ -1,9 +1,10 @@
 package com.cloudchipr.workflowengine.dto;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-
-import java.util.Map;
 
 @EqualsAndHashCode(callSuper = true)
 @ToString
@@ -13,7 +14,11 @@ import java.util.Map;
 @Getter
 public class ProcessStepCandidateDto extends AbstractDto {
 
-    private Map<String, String> params;
+    private String id;
 
-    private WorkflowStepDto candidates;
+    private String executor;
+
+    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
+    private ProcessStepDto step;
+
 }

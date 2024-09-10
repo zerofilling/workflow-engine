@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class ProcessFullDto extends WorkflowDto {
+public class ProcessFullDto extends ProcessDto {
 
     private String name;
 

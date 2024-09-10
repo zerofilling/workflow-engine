@@ -14,7 +14,11 @@ import java.util.Map;
 @Getter
 public class ProcessStepDto extends AbstractDto {
 
-    private String name;
+    private String id;
+
+    private String processId;
+
+    private String executor;
 
     private Map<String, String> params;
 

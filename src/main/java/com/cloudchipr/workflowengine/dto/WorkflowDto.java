@@ -11,6 +11,8 @@ import lombok.experimental.SuperBuilder;
 @Getter
 public class WorkflowDto extends AbstractDto {
 
+    private String id;
+
     private String name;
 
 }

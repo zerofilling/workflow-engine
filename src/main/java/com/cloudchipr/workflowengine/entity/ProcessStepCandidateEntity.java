@@ -1,6 +1,5 @@
 package com.cloudchipr.workflowengine.entity;
 
-import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,9 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Type;
-
-import java.util.Map;
 
 @Entity
 @Table(name = "process_step_candidate")
@@ -22,10 +18,6 @@ import java.util.Map;
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class ProcessStepCandidateEntity extends AbstractEntity {
-
-    @Type(JsonType.class)
-    @Column(columnDefinition = "jsonb")
-    private Map<String, String> params;
 
     private String executor;
 

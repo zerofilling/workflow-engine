@@ -1,12 +1,19 @@
 package com.cloudchipr.workflowengine.engine.step;
 
 import com.cloudchipr.workflowengine.engine.context.StepContext;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
+@Component
+@StepExecutor(name = "groovy_code")
+public class GroovyCodeExecutor extends OneCandidateExecutor {
+    @Override
+    public void validate(StepContext context) {
+        String code = context.configParams().get("groovy_code");
+        // validate groovy code
+    }
 
-@StepProcessor(name = "groovy_code")
-public class GroovyCodeExecutor implements IStepExecutor {
     @Override
     public Map<String, String> execute(StepContext context) {
         String code = context.configParams().get("groovy_code");

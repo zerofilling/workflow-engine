@@ -14,6 +14,8 @@ import java.util.Map;
 @Getter
 public class WorkflowStepDto extends AbstractDto {
 
+    private String id;
+
     private String name;
 
     private Map<String, String> params;

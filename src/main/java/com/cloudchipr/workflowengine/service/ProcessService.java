@@ -25,5 +25,5 @@ public interface ProcessService {
      *
      * @param step
      */
-    void executeStep(ProcessStepDto step);
+    void executeFlow(ProcessStepDto step);
 }
