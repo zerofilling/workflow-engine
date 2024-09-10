@@ -25,6 +25,9 @@ public class ProcessServiceImpl implements ProcessService {
     }
 
     @Override
+    /**
+     * calls from controller or any other user action
+     */
     public void executeFlow(ProcessStepDto step) {
         processEngine.executeFlow(step);
     }

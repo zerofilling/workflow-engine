@@ -32,21 +32,21 @@ public class ProcessEngine {
     private final StepsQueue stepsQueue;
     private ProcessEngine processEngine;
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void executeFlow(ProcessStepDto step) {
-        executeFlow(step, true);
+        processEngine.executeFlow(step, true);
     }
 
-    private void executeFlow(ProcessStepDto step, boolean forceExecution) {
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void  executeFlow(ProcessStepDto step, boolean forceExecution) {
         ProcessStepConfig config = step.getConfig();
         IStepExecutor executor = findExecutor(step.getExecutor());
         StepContext stepContext = contextFactoryMethod.getStepContext(step);
-        if(Objects.equals(config.getStepExecutionType(), StepExecutionType.SYNC)) {
-            if(forceExecution || Objects.equals(config.getStepType(), StepType.AUTO)) {
+        if (Objects.equals(config.getStepExecutionType(), StepExecutionType.SYNC)) {
+            if (forceExecution || Objects.equals(config.getStepType(), StepType.AUTO)) {
                 Map<String, String> newParams = executor.execute(stepContext);
                 processStepDao.saveParams(step.getId(), step.getParams());
                 Optional<ProcessStepDto> nextStep = getNextStep(stepContext, newParams);
-                nextStep.ifPresent(it->executeFlow(it, false));
+                nextStep.ifPresent(it -> processEngine.executeFlow(it, false));
             }
         } else {
             stepsQueue.addStepIntoQueue(step);
@@ -68,14 +68,14 @@ public class ProcessEngine {
         } else {
             Optional<ProcessStepDto> nextStep = (Optional<ProcessStepDto>) matchingCandidates
                     .map(WorkflowStepCandidateDto::getStep)
-                    .map(it->it.toBuilder().params(newParams).build())
-            .findAny();
+                    .map(it -> it.toBuilder().params(newParams).build())
+                    .findAny();
             return nextStep;
         }
     }
 
     private boolean executeCandidateExecutor(StepContext context, String executor) {
-        if(StringUtils.isBlank(executor)) {
+        if (StringUtils.isBlank(executor)) {
             return true;
         }
         ICandidateExecutor candidateExecutor = findCandidateExecutor(executor);
