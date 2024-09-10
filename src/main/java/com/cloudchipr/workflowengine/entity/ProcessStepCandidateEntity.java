@@ -13,7 +13,7 @@ import org.hibernate.annotations.Type;
 import java.util.Map;
 
 @Entity
-@Table(name = "step")
+@Table(name = "process_step_candidate")
 @Getter
 @Setter
 @SuperBuilder

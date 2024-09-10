@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Entity
-@Table(name = "step")
+@Table(name = "workflow_step")
 @Getter
 @Setter
 @SuperBuilder

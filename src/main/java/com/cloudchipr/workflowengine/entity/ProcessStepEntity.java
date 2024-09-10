@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Entity
-@Table(name = "step")
+@Table(name = "process_step")
 @Getter
 @Setter
 @SuperBuilder
