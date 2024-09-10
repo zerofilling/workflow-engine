@@ -21,4 +21,9 @@ public class DefaultStepContext implements StepContext {
     public Map<String, String> params() {
         return step.getParams();
     }
+
+    @Override
+    public Map<String, String> configParams() {
+        return step.getConfig().getParams();
+    }
 }

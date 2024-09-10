@@ -8,4 +8,6 @@ public interface StepContext {
     ProcessStepDto step();
 
     Map<String, String> params();
+
+    Map<String, String> configParams();
 }

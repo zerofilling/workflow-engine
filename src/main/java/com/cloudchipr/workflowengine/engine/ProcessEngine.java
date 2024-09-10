@@ -21,8 +21,7 @@ public class ProcessEngine {
 
     }
 
-
-    void executeStep(ProcessStepDto step) {
+    public void execute(ProcessStepDto step) {
 
     }
 }

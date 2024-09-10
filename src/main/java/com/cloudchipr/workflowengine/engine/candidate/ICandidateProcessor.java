@@ -1,4 +1,4 @@
-package com.cloudchipr.workflowengine.engine;
+package com.cloudchipr.workflowengine.engine.candidate;
 
 import com.cloudchipr.workflowengine.engine.context.StepContext;
 
