@@ -7,7 +7,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
-public abstract class OneCandidateExecutor implements IStepExecutor {
+public abstract class OneCandidateExecutor extends ValidatedExecutor {
     @Override
     public void validate(StepContext context) {
         ProcessStepDto step = context.step();

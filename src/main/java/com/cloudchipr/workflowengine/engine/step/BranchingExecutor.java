@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Component
 @StepExecutor(name = "branching_executor")
-public class BranchingExecutor implements IStepExecutor {
+public class BranchingExecutor extends ValidatedExecutor {
     @Override
     public void validate(StepContext context) {
         ProcessStepDto step = context.step();
@@ -20,7 +20,7 @@ public class BranchingExecutor implements IStepExecutor {
     }
 
     @Override
-    public Map<String, String> execute(StepContext context) {
+    public Map<String, String> run(StepContext context) {
         return context.params();
     }
 

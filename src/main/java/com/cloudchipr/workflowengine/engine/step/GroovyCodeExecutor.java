@@ -15,7 +15,7 @@ public class GroovyCodeExecutor extends OneCandidateExecutor {
     }
 
     @Override
-    public Map<String, String> execute(StepContext context) {
+    public Map<String, String> run(StepContext context) {
         String code = context.configParams().get("groovy_code");
         Map<String, String> params = context.params();
         // convert params to json;

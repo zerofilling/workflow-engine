@@ -43,7 +43,7 @@ public class ProcessEngine {
         StepContext stepContext = contextFactoryMethod.getStepContext(step);
         if(Objects.equals(config.getStepExecutionType(), StepExecutionType.SYNC)) {
             if(forceExecution || Objects.equals(config.getStepType(), StepType.AUTO)) {
-                Map<String, String> newParams = executor.validateAndExecute(stepContext);
+                Map<String, String> newParams = executor.execute(stepContext);
                 processStepDao.saveParams(step.getId(), step.getParams());
                 Optional<ProcessStepDto> nextStep = getNextStep(stepContext, newParams);
                 nextStep.ifPresent(it->executeFlow(it, false));
