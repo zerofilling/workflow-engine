@@ -1,7 +1,6 @@
 package com.cloudchipr.workflowengine.entity;
 
-import com.cloudchipr.workflowengine.dto.ProcessStatus;
-import com.cloudchipr.workflowengine.dto.ProcessStepConfig;
+import com.cloudchipr.workflowengine.dto.LogLevel;
 import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,11 +11,11 @@ import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 
-import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Entity
-@Table(name = "process_step")
+@Table(name = "execution_log")
 @Getter
 @Setter
 @SuperBuilder
@@ -24,22 +23,14 @@ import java.util.Map;
 @NoArgsConstructor
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class ProcessStepEntity extends AbstractEntity {
+public class LogEntity extends AbstractEntity {
 
-    private String name;
-    private String executor;
-
+    private String user;
+    private UUID processStepId;
+    private String message;
     @Type(JsonType.class)
     @Column(columnDefinition = "jsonb")
     private Map<String, String> params;
-
     @Enumerated
-    private ProcessStatus status;
-
-    @Type(JsonType.class)
-    @Column(columnDefinition = "jsonb")
-    private ProcessStepConfig config;
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<ProcessStepCandidateEntity> candidates;
+    private LogLevel logLevel;
 }

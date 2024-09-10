@@ -1,5 +1,6 @@
 package com.cloudchipr.workflowengine.engine;
 
+import com.cloudchipr.workflowengine.dao.LogDao;
 import com.cloudchipr.workflowengine.dao.ProcessStepDao;
 import com.cloudchipr.workflowengine.dto.*;
 import com.cloudchipr.workflowengine.engine.candidate.ICandidateExecutor;
@@ -30,6 +31,7 @@ public class ProcessEngine {
     private final ContextFactoryMethod contextFactoryMethod;
     private final ProcessStepDao processStepDao;
     private final StepsQueue stepsQueue;
+    private final LogDao logDao;
     private ProcessEngine processEngine;
 
     public void executeFlow(ProcessStepDto step) {
@@ -38,6 +40,7 @@ public class ProcessEngine {
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void  executeFlow(ProcessStepDto step, boolean forceExecution) {
+        logDao.info("Start to execute log", step.getId(), getUserId(), step.getParams());
         ProcessStepConfig config = step.getConfig();
         IStepExecutor executor = findExecutor(step.getExecutor());
         StepContext stepContext = contextFactoryMethod.getStepContext(step);
@@ -51,6 +54,11 @@ public class ProcessEngine {
         } else {
             stepsQueue.addStepIntoQueue(step);
         }
+    }
+
+    private String getUserId() {
+        // todo implement
+        return "User";
     }
 
     @SuppressWarnings("all")
