@@ -27,6 +27,8 @@ public class ProcessStepCandidateEntity extends AbstractEntity {
     @Column(columnDefinition = "jsonb")
     private Map<String, String> params;
 
+    private String executor;
+
     @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
     private ProcessStepEntity step;
 }
