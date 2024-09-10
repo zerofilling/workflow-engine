@@ -2,7 +2,9 @@ package com.cloudchipr.workflowengine.engine;
 
 import com.cloudchipr.workflowengine.engine.context.StepContext;
 
+import java.util.Map;
+
 public interface IStepProcessor {
-    void execute(StepContext context);
+    Map<String, String> execute(StepContext context);
 
 }

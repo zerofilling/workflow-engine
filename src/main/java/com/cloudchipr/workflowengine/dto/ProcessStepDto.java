@@ -18,5 +18,9 @@ public class ProcessStepDto extends AbstractDto {
 
     private Map<String, String> params;
 
+    private ProcessStatus status;
+
+    private ProcessStepConfig config;
+
     private List<WorkflowStepCandidateDto> candidates;
 }

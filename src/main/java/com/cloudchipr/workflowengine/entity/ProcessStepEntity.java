@@ -1,5 +1,7 @@
 package com.cloudchipr.workflowengine.entity;
 
+import com.cloudchipr.workflowengine.dto.ProcessStatus;
+import com.cloudchipr.workflowengine.dto.ProcessStepConfig;
 import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -30,6 +32,10 @@ public class ProcessStepEntity extends AbstractEntity {
     @Type(JsonType.class)
     @Column(columnDefinition = "jsonb")
     private Map<String, String> params;
+
+    @Type(JsonType.class)
+    @Column(columnDefinition = "jsonb")
+    private ProcessStepConfig config;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ProcessStepCandidateEntity> candidates;
